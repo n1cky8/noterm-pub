@@ -1,6 +1,6 @@
 Software License Agreement
 
-This Software License Agreement ("Agreement") is between Nicky Bramante ("Author")
+This Software License Agreement ("Agreement") is between Nickyb ("Author")
 and the user ("User") of the software ("Software") described below.
 
 1. Grant of License
@@ -52,6 +52,3 @@ Italy, without regard to its conflict of law principles.
 
 By downloading or using the Software, the User agrees to be bound by the terms of
 this Agreement.
-
-If you have any questions about this Agreement,
-please contact nicky.bramante@gmail.com
