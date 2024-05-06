@@ -15,21 +15,17 @@ With Noterm, users can transition seamlessly between writing notes and executing
 To install and run Noterm on your system, follow these steps:
 
 1. **Download Noterm**:
-   - Visit the official Noterm website to download the latest release.
+   - download the latest release.
 
 2. **Extract the ZIP File**:
    - Once downloaded, extract the contents of the ZIP file to a directory on your system.
 
-3. **Navigate to the Directory**:
-   - Open a terminal or command prompt.
-
-4. **Launch Noterm**:
-   - Change directory (`cd`) to the location where you extracted the Noterm files.
+3. **Launch Noterm**:
    - Run the executable:
-     - On Windows: Execute `noterm.exe`
-     - On Linux/macOS: Run `./noterm`
+     - On Windows: `noterm.exe`
+     - On MacOS: `Noterm.app`
 
-### Terminology
+### Terminology and syntax
 
 Noterm incorporates specific terminology to improve understanding and functionality within the application:
 
@@ -40,6 +36,28 @@ Noterm incorporates specific terminology to improve understanding and functional
 - **#tag** Specifies a tag name or flag preceded by a hash symbol.
 - **:** Separates the preceding elements from the content or operation.
 - **content or operation** Contains additional information, content, or an operation.
+
+#### Syntax 1: Embed - Single Line Format
+
+```
+<% `@verb` `alias` `"banner"` `(parameter)` `#tagname` : `content or operation` %>
+```
+
+#### Syntax 2: Embed - Multi Line Format
+
+```
+<% `@verb` `alias` `"banner"` `(parameter)` `#tagname` :
+    `content or operation`
+%>
+```
+
+#### Syntax 3: Annotations
+
+```
+<% `@verb` `alias` `"banner"` `(parameter)` `#tagname` %>
+`content or operation`
+```
+
 
 ### Keyboard Shortcuts
 
