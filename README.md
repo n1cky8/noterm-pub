@@ -1,29 +1,12 @@
 ### Introduction to Noterm
 
-Noterm is a unique text editor that integrates note-taking with an embedded terminal, enabling seamless execution of OS commands and SQL queries directly within the editor interface. Embrace the efficiency of treating notes as executable code with Noterm's powerful features.
-
-Key aspects of Noterm include:
-
-- **Text Editing**: Enjoy a familiar and intuitive text editor interface for creating and modifying notes.
-- **Integrated Terminal**: Execute operating system commands and SQL queries without leaving the editor.
-- **Efficient Workflow**: Combine note-taking and command execution within the same environment.
-
-With Noterm, users can transition seamlessly between writing notes and executing commands, enhancing productivity and workflow integration. Explore the capabilities of "notes as code" with this versatile text editor!
+Noterm (short for "notes + terminal") is a notes-as-code tool that allows you to manage notes and execute OS and SQL commands from a single point, directly within a text file without the need for manual copying and pasting.
 
 ### Installation
 
-To install and run Noterm on your system, follow these steps:
-
-1. **Download Noterm**:
-   - download the latest release.
-
-2. **Extract the ZIP File**:
-   - Once downloaded, extract the contents of the ZIP file to a directory on your system.
-
-3. **Launch Noterm**:
-   - Run the executable:
-     - On Windows: `noterm.exe`
-     - On MacOS: `Noterm.app`
+To install and run Noterm on your system download the latest release, extract the contents of the ZIP file to a directory on your system and run the executable :
+  - On Windows: `noterm.exe`
+  - On MacOS: `Noterm.app`
 
 ### Terminology and syntax
 
