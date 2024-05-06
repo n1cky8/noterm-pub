@@ -95,6 +95,34 @@ content or operation
 - `Command/Ctrl + b`: Switches the page backward (with an optional Shift modifier to switch forward).
 - `Command/Ctrl + z`: Toggles zoom.
 
+## Prompt Functionality
+
+Noterm's prompt offers powerful functionalities for managing files and performing actions within the editor interface. Here's a summary of its capabilities:
+
+- **Delete File or Directory**: Use `<file/path> :d` to delete a specified file or directory.
+  
+- **Create New File**: Use `<file> :nf` to create a new file with the specified name.
+  
+- **Create New Directory**: Use `<path> :nd` to create a new directory at the specified path.
+  
+- **Save Buffer to New File**: Use `<file> :w` to save the content of the buffer to a new file with the specified name.
+
+These prompt commands enable efficient file management and operations directly from the Noterm editor interface, streamlining your workflow for note-taking and file manipulation.
+
+### Example Usage
+
+Here are examples demonstrating how to use these prompt functionalities:
+
+- `file.txt :d` deletes the `file.txt` from the filesystem.
+  
+- `newfile.txt :nf` creates a new file named `newfile.txt`.
+  
+- `newdirectory :nd` creates a new directory named `newdirectory`.
+  
+- `newfile.txt :w` saves the content of the editor buffer to a new file named `newfile.txt`.
+
+These commands enhance the versatility of Noterm, providing users with intuitive ways to manage files and perform actions directly within the editor environment.
+
 ---
 
 Enhance your productivity with Noterm by seamlessly integrating note-taking with OS command and SQL query execution. Explore the capabilities of "notes as code" with this versatile text editor!
