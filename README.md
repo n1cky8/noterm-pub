@@ -41,40 +41,6 @@ Noterm incorporates specific terminology to improve understanding and functional
 `content or operation`
 ```
 
-
-### Keyboard Shortcuts
-
-Noterm provides convenient keyboard shortcuts to streamline your workflow:
-
-- **Command/Ctrl + .**: Prompts focus.
-- **Command/Ctrl + Escape**: Closes the page.
-- **Command/Ctrl + n**: Appends an editor.
-- **Command/Ctrl + t**: Appends a new page.
-- **Command/Ctrl + s**: Saves the page.
-- **Command/Ctrl + e**: Erases the page (in an editor, clears the terminal).
-- **Command/Ctrl + l**: Switches the layout (show/hide terminal).
-- **Command/Ctrl + k**: Toggles the aside.
-- **Command/Ctrl + b**: Switches the page backward (with an optional Shift modifier to switch forward).
-- **Command/Ctrl + z**: Toggles zoom.
-
-### Prompt Functionality
-
-Noterm's prompt allows for loading pages that manage different file types within the editor interface:
-
-- **Directory Input**: Entering a directory path loads a file system manager page, enabling navigation and interaction with files and directories.
-  
-- **Text File Input**: Inputting a text file path opens an integrated text editor page for note-taking and content editing.
-  
-- **Image File Input**: Providing an image file path displays the image within the Noterm interface, allowing visual content viewing directly in the editor.
-
-Additionally, using specific options with the prompt allows for file and folder management:
-
-- **Create File**: Use `<file> :nf` to create a new file with the specified name.
-  
-- **Create Directory**: Use `<path> :nd` to create a new directory at the specified path.
-  
-- **Delete File or Directory**: Utilize `<file/path> :d` to delete a specified file or directory.
-
 ### Command Execution in Noterm
 
 Noterm allows for executing commands directly within the editor interface using specific syntax. Below are examples of command execution syntax in Noterm:
@@ -215,3 +181,36 @@ Access the sidebar by performing a **long-click** on the **back button**. Here's
 
 1. Press and hold (long-click) the **back button** of your device.
 2. The sidebar will slide in, providing navigation links without leaving the current page.
+
+### Keyboard Shortcuts
+
+Noterm provides convenient keyboard shortcuts to streamline your workflow:
+
+- **Command/Ctrl + .**: Prompts focus.
+- **Command/Ctrl + Escape**: Closes the page.
+- **Command/Ctrl + n**: Appends an editor.
+- **Command/Ctrl + t**: Appends a new page.
+- **Command/Ctrl + s**: Saves the page.
+- **Command/Ctrl + e**: Erases the page (in an editor, clears the terminal).
+- **Command/Ctrl + l**: Switches the layout (show/hide terminal).
+- **Command/Ctrl + k**: Toggles the aside.
+- **Command/Ctrl + b**: Switches the page backward (with an optional Shift modifier to switch forward).
+- **Command/Ctrl + z**: Toggles zoom.
+
+### Prompt Functionality
+
+Noterm's prompt allows for loading pages that manage different file types within the editor interface:
+
+- **Directory Input**: Entering a directory path loads a file system manager page, enabling navigation and interaction with files and directories.
+  
+- **Text File Input**: Inputting a text file path opens an integrated text editor page for note-taking and content editing.
+  
+- **Image File Input**: Providing an image file path displays the image within the Noterm interface, allowing visual content viewing directly in the editor.
+
+Additionally, using specific options with the prompt allows for file and folder management:
+
+- **Create File**: Use `<file> :nf` to create a new file with the specified name.
+  
+- **Create Directory**: Use `<path> :nd` to create a new directory at the specified path.
+  
+- **Delete File or Directory**: Utilize `<file/path> :d` to delete a specified file or directory.
