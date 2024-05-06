@@ -143,26 +143,6 @@ This Git command example (`git status`) will be executed in the current file's l
 
 ---
 
-## Using Noterm Snippets for Command Execution
-
-In Noterm, you can easily execute commands embedded within snippets directly from a text file. Here's how you can execute commands using keyboard shortcuts or by clicking on line numbers:
-
-### Keyboard Shortcut Execution
-
-1. **Navigate to Snippet**: Position your cursor within the snippet containing the command you wish to execute.
-   
-2. **Execute Command**: Press `Command + Enter` (Mac) or `Ctrl + Enter` (Windows/Linux) to execute the command.
-
-This keyboard shortcut allows you to quickly execute commands without leaving the editor interface, enhancing your workflow efficiency.
-
-### Click-to-Execute (Line Numbers)
-
-1. **Identify Command**: Locate the line number corresponding to the command you want to execute within the snippet.
-
-2. **Execute Command**: Click on the line number associated with the command to execute it directly.
-
----
-
 ## Important UI Features
 
 Below are key UI features that users should be aware of for efficient navigation and file management.
@@ -214,3 +194,21 @@ Additionally, using specific options with the prompt allows for file and folder 
 - **Create Directory**: Use `<path> :nd` to create a new directory at the specified path.
   
 - **Delete File or Directory**: Utilize `<file/path> :d` to delete a specified file or directory.
+
+## Using Noterm Snippets for Command Execution
+
+In Noterm, you can easily execute commands embedded within snippets directly from a text file. Here's how you can execute commands using keyboard shortcuts or by clicking on line numbers:
+
+### Keyboard Shortcut Execution
+
+1. **Navigate to Snippet**: Position your cursor within the snippet containing the command you wish to execute.
+   
+2. **Execute Command**: Press `Command + Enter` (Mac) or `Ctrl + Enter` (Windows/Linux) to execute the command.
+
+This keyboard shortcut allows you to quickly execute commands without leaving the editor interface, enhancing your workflow efficiency.
+
+### Click-to-Execute (Line Numbers)
+
+1. **Identify Command**: Locate the line number corresponding to the command you want to execute within the snippet.
+
+2. **Execute Command**: Click on the line number associated with the command to execute it directly.
