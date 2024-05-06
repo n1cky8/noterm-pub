@@ -212,4 +212,23 @@ This keyboard shortcut allows you to quickly execute commands without leaving th
 
 2. **Execute Command**: Click on the line number associated with the command to execute it directly.
 
+---
 
+## Important UI Features
+
+Below are key UI features that users should be aware of for efficient navigation and file management.
+
+## Opening Files in a New Directory
+
+To open a file in a different directory, use a **long-click** action on the file. Follow these steps:
+
+1. Navigate to the file you want to open.
+2. Perform a **long-click** (press and hold) on the file icon or name.
+3. A new page will open displaying the file's contents in the selected directory.
+
+## Displaying the Sidebar
+
+Access the sidebar by performing a **long-click** on the **back button**. Here's how:
+
+1. Press and hold (long-click) the **back button** of your device.
+2. The sidebar will slide in, providing navigation links without leaving the current page.
