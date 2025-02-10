@@ -1,0 +1,9 @@
+@cmd (.) : ls
+
+@cmd (.) : git status
+
+@cmd (.) : git add .
+
+@cmd (.) : git commit -m "update readme 2025.00"
+
+@cmd (.) : git push
