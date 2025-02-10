@@ -1,214 +1,260 @@
-### Introduction to Noterm
+# Noterm - The First Notes-as-Code Tool
 
-Noterm (short for "notes + terminal") is a notes-as-code tool that allows you to manage notes and execute OS and SQL commands from a single point, directly within a text file without the need for manual copying and pasting.
+Noterm is a desktop application that transforms notes into executable commands. Write once, execute anytime, and share with your team. It eliminates the need for multiple tools like text editors, file explorers, terminals, Postman, and SQL editors—helping you stay focused on your work.
 
-### Installation
+## Why Noterm?
 
-To install and run Noterm on your system download the latest release, extract the contents of the ZIP file to a directory on your system and run the executable :
-  - On Windows: `noterm.exe`
-  - On MacOS: `Noterm.app`
+🚀 **Executable Documentation** – Run commands directly from your notes and keep documentation up to date.
 
-### Terminology and syntax
+🔄 **Workflow Automation** – Reduce repetitive tasks and minimize human error.
 
-Noterm incorporates specific terminology to improve understanding and functionality within the application:
+📚 **Knowledge Sharing** – Share working examples and onboard team members faster.
 
-- **@verb** Denotes an action or verb.
-- **alias** Represents an alias (a short, user-defined name).
-- **"banner"** Indicates a banner, enclosed in double quotes.
-- **(parameter)** Encloses a parameter within parentheses.
-- **#tag** Specifies a tag name or flag preceded by a hash symbol.
-- **:** Separates the preceding elements from the content or operation.
-- **content or operation** Contains additional information, content, or an operation.
+🛠 **Efficiency** – All essential tools in one place, reducing context switching.
 
-#### Syntax 1: Embed - Single Line Format
+## The Interface
 
+Noterm's interface consists of three main components:
+
+1. **Buffer** – A specialized text editor where you:
+   - Write and organize your notes.
+   - Execute commands directly from notes.
+   - Save files with the `.n` extension.
+   - View command outputs on the left side.
+   - Monitor multiple command executions simultaneously.
+
+2. **Finder** – A file system explorer that:
+   - Activates when entering a directory path.
+   - Allows file system manipulation.
+   - Supports bookmarks for quick access.
+
+3. **Viewer** – A simple image display component that:
+   - Shows images when an image file is selected.
+
+## Executing Units
+
+Units in Noterm can be executed in two ways:
+- Click on the line number of the unit you want to execute.
+- Position the cursor on the unit and press `Cmd+Enter` (or `Ctrl+Enter` on other OS).
+
+## Navigation & Controls
+
+### Essential Keyboard Shortcuts
+- `Cmd+.` – Focus prompt
+- `ESC` – Reset prompt input
+- `Cmd+N` – Open a new page
+- `Cmd+B` – Navigate backward
+- `Cmd+Shift+B` – Navigate forward
+- `Cmd+K` – Toggle sidebar
+- `Cmd+Shift+ESC` – Close page
+
+## Note Structure
+
+### Units
+
+Notes in Noterm are structured into **units**, which can be written in two ways:
+
+#### Inline Unit Syntax
 ```
-<% `@verb` `alias` `"banner"` `(parameter)` `#tagname` : `content or operation` %>
-```
-
-#### Syntax 2: Embed - Multi Line Format
-
-```
-<% `@verb` `alias` `"banner"` `(parameter)` `#tagname` :
-    `content or operation`
-%>
-```
-
-#### Syntax 3: Annotations
-
-```
-<% `@verb` `alias` `"banner"` `(parameter)` `#tagname` %>
-`content or operation`
-```
-
-### Command Execution in Noterm
-
-Noterm allows for executing commands directly within the editor interface using specific syntax. Below are examples of command execution syntax in Noterm:
-
-#### General Command Execution
-
-To execute a general command with a specific directory path in Noterm, use the following syntax:
-
-```
-<% @cmd (/path/to/directory) : git status %>
-```
-
-Replace `/path/to/directory` with the desired directory path where the `git status` command should be executed.
-
-#### Kubernetes Command Execution
-
-For executing Kubernetes commands in Noterm, use the following syntax without specifying a directory parameter:
-
-```
-<% @cmd : kubectl get pods %>
+@<verb> [<alias>] [<parameter>] [<modifiers>] [<banner>] : <content>
 ```
 
-This command executes `kubectl get pods` at the current directory location.
-
-#### SQL Command Execution
-
-To execute SQL commands with a defined database connection in Noterm, use the following syntax:
-
+#### Annotation Unit Syntax
 ```
-<% @var db #postgres : postgres://username:password@localhost:5432/dbname %>
-<% @sql ($db) : SELECT * FROM table_name %>
+@<verb> [<alias>] [<parameter>] [<modifiers>] [<banner>]
+<content>
 ```
 
-Replace `postgres://username:password@localhost:5432/dbname` with your database connection URL.
+> In the annotation format, everything following the unit is considered `content` until another unit begins.
 
-Use the #postgres tag to specify the PostgreSQL driver. Other supported database drivers include #mysql #clickhouse and #sqlite3.
+#### **1. Verbs (Unit Types)**
+Specify the type of action to perform. Common verbs include:
 
-#### Using Variables for Commands
+#### **2. Alias**
+An optional identifier for the unit. If provided, the unit is **cached** and can be referenced later using placeholders (`$alias` or `${alias}`). The alias can include a **bundle** (similar to a package) in the format `[bundle.]slug`.
 
-Noterm supports using variables to define parameters for commands. For example, defining a database connection as a variable and using it in an SQL command:
+**Examples**:
+- `list_files` (simple alias).
+- `utils.list_files` (alias with a bundle).
 
+#### **3. Parameter**
+Optional context for the unit, such as a directory path or connection details. If no parameter is needed, omit it entirely.
+
+#### **4. Modifiers**
+Customize the behavior of the unit. They are prefixed with `#` and placed after the alias (if any).
+
+#### **5. Banner**
+An optional description or label for the unit.
+
+#### **6. Context**
+The actual command, query, or text to execute or display. This is always the last part of the unit.
+
+
+### Verbs (Unit Types)
+
+1. **@cmd** – Execute shell commands
+   ```
+   @cmd "backup" : ./backup-script.sh
+   @cmd "long process" #run : ./long-running-task.sh
+   ```
+   > `#run` modifier allows the command to run independently from stdin and stderr.
+
+2. **@sql** – Execute database queries
+   ```
+   @sql ($mysql_db) "Active Users"
+   SELECT * FROM users WHERE active = 1
+   ```
+
+3. **@api** – Make HTTP/HTTPS requests
+   ```
+   @api "get users" : GET https://api.example.com/users
+   ```
+
+4. **@var** – Declare variables
+   ```
+   @var mysql_db #mysql : user:password@host/dbname
+   ```
+
+5. **@rem** – Add documentation sections
+   ```
+   @rem "Database Operations"
+   # The following commands handle database maintenance.
+   ```
+
+### Placeholder System
+
+Use placeholders for dynamic values:
 ```
-<% @var db #postgres : "postgres://username:password@localhost:5432/dbname" %>
-<% @sql ($db) : SELECT * FROM table_name; %>
+@cmd "commit" : git commit -m "${message}"
+@var db #mysql : ${credentials}@<host>/<dbname>
 ```
 
-#### Using @cmd Directive with Tags
+## Cookie Mode
 
-The `@cmd` directive in Noterm supports additional tags to customize command execution:
-
-- **#run**: Executes the command in the background without piping standard output. Example:
-
-  ```
-  <% @cmd #run : long-running-command %>
-  ```
-
-#### Using @sql Directive with Tags
-
-When executing SQL commands (`@sql`) in Noterm, specific tags can be used based on the expected outcome:
-
-- **#retrieve**: Use when the command is expected to return records, such as `SELECT` statements. Example:
-
-  ```
-  <% @sql #retrieve ($db) : SELECT * FROM table_name; %>
-  ```
-
-- **Forcing Fetch**: Certain operations like `DESC <table>` or calling stored procedures may require forcing the fetch (`#retrieve`) tag if the outcome is uncertain. Example:
-
-  ```
-  <% @sql #retrieve ($db) : DESC table_name; %>
-  ```
-
-Using these tags and directives with the `@cmd` and `@sql` directives allows for precise control and behavior when executing commands within Noterm, optimizing command execution for various scenarios and outcomes. Experiment with these tags to streamline your workflow and handle command execution effectively.
-
----
-
-### Using Cookie Files
-
-The key feature of "cookie" files is the ability to dynamically leverage the file path (`.`) within snippets.
-
-#### How It Works
-
-When writing a code snippet in a "cookie" file, you can use the dot (`.`) as a placeholder to represent the path of the file where the "cookie" file is being used. This allows you to write generic and reusable code snippets that automatically adapt to the current file's location.
-
-#### Example
-
-Here's an example of how you might use the file path (`.`) in a Noterm "cookie" file:
-
+When a manifest is saved, Noterm can leverage the file's location as a relative path. This means commands can use the working directory of the manifest file. Example:
 ```
-<% @cmd (.) : git status %>
+@cmd (.) : ls -al
+```
+Before executing the command, Noterm sets the working directory accordingly. This also allows for using paths like:
+```
+@cmd (.) : ./temp
+```
+## Database Integration
+
+### Connection Variables
+
+#### MySQL:
+```
+@var mysql_db #mysql : <user>:<password>@<host>/<dbname>
 ```
 
-This Git command example (`git status`) will be executed in the current file's location.
+#### PostgreSQL:
+```
+@var pg_db #postgres : <user>:<password>@/<database>
+```
 
-#### Advantages
+#### SQLite:
+```
+@var local_db #sqlite : </path/to/database-sqlite>
+```
 
-- **Flexibility**: Reusable code snippets that automatically adapt to the file's location.
-- **Ease of Use**: Intuitive use of the file path to write more dynamic code snippets.
-- **Efficiency**: Increased adaptability of code snippets based on the current file's location.
+### Query Execution
+```
+@sql ($mysql_db) "User Analysis"
+SELECT 
+    user_id,
+    COUNT(*) AS login_count,
+    MAX(login_time) AS last_login
+FROM user_logins
+GROUP BY user_id
+ORDER BY login_count DESC;
+```
 
----
+## Expressions for the Buffer
 
-## Important UI Features
+Expressions must be entered and transmitted (press Enter) in the prompt.
 
-Below are key UI features that users should be aware of for efficient navigation and file management.
+### Find Text
+```
+:f|word
+:f|word|1..10
+:f|word|..10
+:f|word|10..
+:r|word|3,7
+```
 
-## Opening Files in a New Directory
+### Replace Text
+```
+:s|word|new word
+:s|word|new word|1..10
+:s|word|new word|..10
+:s|word|new word|1..
+:s|word|new word|3,7
+```
 
-To open a file in a different directory, use a **long-click** action on the file. Follow these steps:
+### Delete Lines
+```
+:d|1
+:d|1..10
+:d|..10
+:d|10..
+:d|3,7
+```
 
-1. Navigate to the file you want to open.
-2. Perform a **long-click** (press and hold) on the file icon or name.
-3. A new page will open displaying the file's contents in the selected directory.
+### Change Case
+```
+:u|word[|rows-pattern]   # Uppercase
+:l|word[|rows-pattern]   # Lowercase
+```
 
-## Displaying the Sidebar
+### Save File
 
-Access the sidebar by performing a **long-click** on the **back button**. Here's how:
+1. `<file-path> :w`
+2. Use **Cmd+S** (if the file is a draft, use syntax 1).
 
-1. Press and hold (long-click) the **back button** of your device.
-2. The sidebar will slide in, providing navigation links without leaving the current page.
+## File System Expressions
 
-### Keyboard Shortcuts
+Expressions allow file system manipulation directly within the Finder (use prompt).
 
-Noterm provides convenient keyboard shortcuts to streamline your workflow:
+### Delete Files/Directories
+```
+:d|rows-pattern
+```
 
-- **Command/Ctrl + .**: Prompts focus.
-- **Command/Ctrl + Escape**: Closes the page.
-- **Command/Ctrl + n**: Appends an editor.
-- **Command/Ctrl + t**: Appends a new page.
-- **Command/Ctrl + s**: Saves the page.
-- **Command/Ctrl + e**: Erases the page (in an editor, clears the terminal).
-- **Command/Ctrl + l**: Switches the layout (show/hide terminal).
-- **Command/Ctrl + k**: Toggles the aside.
-- **Command/Ctrl + b**: Switches the page backward (with an optional Shift modifier to switch forward).
-- **Command/Ctrl + z**: Toggles zoom.
+### Move Files
+```
+:m|rows-pattern|directory
+```
 
-### Prompt Functionality
+### Copy Files
+```
+:c|rows-pattern|directory
+```
 
-Noterm's prompt allows for loading pages that manage different file types within the editor interface:
+### Rename Files
+```
+:r|row|file
+```
 
-- **Directory Input**: Entering a directory path loads a file system manager page, enabling navigation and interaction with files and directories.
-  
-- **Text File Input**: Inputting a text file path opens an integrated text editor page for note-taking and content editing.
-  
-- **Image File Input**: Providing an image file path displays the image within the Noterm interface, allowing visual content viewing directly in the editor.
+### Create New Directory
+```
+<new-directory-path> :nd
+```
 
-Additionally, using specific options with the prompt allows for file and folder management:
+### Create Empty File
+```
+<new-file-path> :nf
+```
 
-- **Create File**: Use `<file> :nf` to create a new file with the specified name.
-  
-- **Create Directory**: Use `<path> :nd` to create a new directory at the specified path.
-  
-- **Delete File or Directory**: Utilize `<file/path> :d` to delete a specified file or directory.
+### Bookmarks
+- Create: `<path> :nb`
+- Access: Enter `://bookmarks` in the prompt
 
-## Using Noterm Snippets for Command Execution
+## Getting Started
 
-In Noterm, you can easily execute commands embedded within snippets directly from a text file. Here's how you can execute commands using keyboard shortcuts or by clicking on line numbers:
+1. Download Noterm.
+2. Create your first `.n` file.
+3. Start documenting your workflows.
+4. Share with your team.
 
-### Keyboard Shortcut Execution
-
-1. **Navigate to Snippet**: Position your cursor within the snippet containing the command you wish to execute.
-   
-2. **Execute Command**: Press `Command + Enter` (Mac) or `Ctrl + Enter` (Windows/Linux) to execute the command.
-
-This keyboard shortcut allows you to quickly execute commands without leaving the editor interface, enhancing your workflow efficiency.
-
-### Click-to-Execute (Line Numbers)
-
-1. **Identify Command**: Locate the line number corresponding to the command you want to execute within the snippet.
-
-2. **Execute Command**: Click on the line number associated with the command to execute it directly.
+**Tip:** Start with small tasks, document common commands, and gradually build a complete command library. Noterm helps you streamline your workflow and keep everything in one place!
