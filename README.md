@@ -1,6 +1,6 @@
 # Noterm - The First Notes-as-Code Tool
 
-Noterm is a desktop application that transforms notes into executable commands. Write once, execute anytime, and share with your team. It eliminates the need for multiple tools like text editors, file explorers, terminals, Postman, and SQL editors—helping you stay focused on your work.
+Noterm is a desktop application that turns notes into executable commands. Write once, execute anytime, and share with your team. It consolidates multiple tools, including text editors, file explorers, terminals, and API clients, helping you stay focused and work more efficiently.
 
 ## Why Noterm?
 
