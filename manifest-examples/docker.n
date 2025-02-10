@@ -1,0 +1,38 @@
+@rem "Docker Commands"
+# Useful Docker commands for managing images and containers.
+
+@cmd "Build Docker Image" : docker build -t ${image-name}:${tag} ${context-path}
+@cmd "List Docker Images" : docker images
+@cmd "Run Docker Container" : docker run -d --name ${container-name} ${image-name}:${tag}
+@cmd "Stop Docker Container" : docker stop ${container-name}
+@cmd "Start Docker Container" : docker start ${container-name}
+@cmd "Remove Docker Container" : docker rm ${container-name}
+@cmd "Remove Docker Image" : docker rmi ${image-name}:${tag}
+@cmd "Push Docker Image" : docker push ${image-name}:${tag}
+@cmd "Pull Docker Image" : docker pull ${image-name}:${tag}
+@cmd "Show Docker Logs" : docker logs ${container-name}
+@cmd "List Running Containers" : docker ps
+@cmd "List All Containers" : docker ps -a
+@cmd "Exec into Docker Container" : docker exec -it ${container-name} /bin/bash
+
+@rem "Set Docker Environment Variables"
+# Set Docker-related environment variables for easier management.
+
+@var #env : DOCKER_HOST=tcp://localhost:2375
+@var #env : DOCKER_TLS_VERIFY=1
+@var #env : DOCKER_CERT_PATH=${cert-path}
+
+@rem "Docker Compose Commands"
+# Useful commands for managing Docker Compose projects.
+
+@cmd "Start Docker Compose" : docker-compose up -d
+@cmd "Stop Docker Compose" : docker-compose down
+@cmd "View Docker Compose Logs" : docker-compose logs ${service-name}
+@cmd "Run Docker Compose Command" : docker-compose exec ${service-name} ${command}
+
+@rem "Docker Network Commands"
+# Manage Docker networks.
+
+@cmd "Create Docker Network" : docker network create ${network-name}
+@cmd "List Docker Networks" : docker network ls
+@cmd "Remove Docker Network" : docker network rm ${network-name}

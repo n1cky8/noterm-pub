@@ -1,0 +1,52 @@
+@rem "Kubernetes Commands"
+# A collection of useful commands for Kubernetes management.
+
+@cmd "Get Cluster Info" : kubectl cluster-info
+@cmd "Get Nodes" : kubectl get nodes
+@cmd "Get Pods" : kubectl get pods
+@cmd "Get Services" : kubectl get svc
+@cmd "Get Deployments" : kubectl get deployments
+@cmd "Get Namespaces" : kubectl get namespaces
+@cmd "Get Logs" : kubectl logs ${pod-name}
+@cmd "Describe Pod" : kubectl describe pod ${pod-name}
+@cmd "Delete Pod" : kubectl delete pod ${pod-name}
+@cmd "Scale Deployment" : kubectl scale deployment ${deployment-name} --replicas=${replicas}
+@cmd "Apply Config" : kubectl apply -f ${config-file}.yaml
+@cmd "Delete Deployment" : kubectl delete deployment ${deployment-name}
+@cmd "Expose Deployment" : kubectl expose deployment ${deployment-name} --type=LoadBalancer --port=${port} --target-port=${target-port}
+
+@rem "Helm Commands"
+# Useful Helm commands for managing Kubernetes charts.
+
+@cmd "List Helm Releases" : helm list
+@cmd "Install Helm Chart" : helm install ${release-name} stable/${chart-name} --values ${values-file}.yaml
+@cmd "Upgrade Helm Release" : helm upgrade ${release-name} stable/${chart-name} --values ${values-file}.yaml
+@cmd "Uninstall Helm Release" : helm uninstall ${release-name}
+
+@rem "Context Switching"
+# Change the Kubernetes context (useful for multi-cluster environments)
+
+@cmd "Set Context" : kubectl config use-context ${context-name}
+@cmd "Get Context" : kubectl config current-context
+@cmd "List Contexts" : kubectl config get-contexts
+
+@rem "Useful Namespace Commands"
+# Common namespace operations in Kubernetes
+
+@cmd "Create Namespace" : kubectl create namespace ${namespace-name}
+@cmd "Delete Namespace" : kubectl delete namespace ${namespace-name}
+
+@rem "Pod Port Forwarding"
+# Forward ports from a pod to your local machine
+
+@cmd "Port Forward Pod" : kubectl port-forward ${pod-name} ${local-port}:${remote-port}
+
+@rem "Kubernetes API Server Info"
+# To interact with Kubernetes API server (GET request example)
+
+@api "Get Kubernetes API Info" : GET https://${kubernetes-api-server}/api
+
+@rem "Set kubeconfig"
+# Set the kubeconfig environment variable to the path of your kubeconfig file.
+
+@var #env : kube_config=~/.kube/config

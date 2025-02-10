@@ -1,0 +1,32 @@
+@rem "NOTE"
+# 📌 This .n file must be placed **in the root directory of a Git repository**.
+# The Git commands will be executed in the context of that directory, so make sure to place it correctly for proper functionality.
+
+@rem "Git Commands"
+# Useful Git commands for managing repositories.
+
+@cmd (.) : git status
+@cmd (.) : git add ${file}
+@cmd (.) : git commit -m "${commit-message}"
+@cmd (.) : git push origin ${branch}
+@cmd (.) : git pull origin ${branch}
+@cmd (.) : git log --oneline
+@cmd (.) : git clone ${repo-url} ${repo-name}
+@cmd (.) : git branch
+@cmd (.) : git checkout ${branch}
+@cmd (.) : git merge ${branch}
+@cmd (.) : git fetch
+
+@rem "Set Git Environment Variables"
+# Set Git-related environment variables for easier management.
+
+@var #env : GIT_USER_NAME="${git-user-name}"
+@var #env : GIT_USER_EMAIL="${git-user-email}"
+
+@rem "Git Remote Commands"
+# Manage Git remotes for the repository.
+
+@cmd (.) : git remote add origin ${remote-url}
+@cmd (.) : git remote -v
+@cmd (.) : git remote remove origin
+@cmd (.) : git remote set-url origin ${new-remote-url}
